@@ -5,6 +5,8 @@ Project ini adalah implementasi spesifikasi API pada [task.md](file:///c:/Users/
 ## Struktur Folder
 
 - `backend/` : Spring Boot API + UI web statis (served dari Spring)
+- `desktop-app/` : aplikasi desktop Windows (Java Swing) untuk akses API (pengganti APK mobile)
+- `scripts/` : skrip bantu untuk menyiapkan deliverables (PDF + source + archive)
 - `task.md` : dokumen spesifikasi API
 
 ## Prasyarat
@@ -29,6 +31,26 @@ Lalu buka:
 
 ```bash
 .\mvnw.cmd test
+```
+
+## Aplikasi Desktop (Windows)
+
+Jika “APK” yang dimaksud adalah aplikasi desktop Windows, project ini menyediakan client desktop berbasis Java Swing.
+
+Build dari folder `desktop-app`:
+
+```bash
+.\mvnw.cmd package
+```
+
+Hasilnya:
+
+- `desktop-app/target/absensi-desktop.jar`
+
+Jalankan:
+
+```bash
+java -jar .\target\absensi-desktop.jar
 ```
 
 ## Aturan Penting (Sesuai Spesifikasi)
@@ -114,7 +136,7 @@ Header:
 - `POST /pegawai/admin-tambah-pegawai` (Admin/HRD)
 - `POST /pegawai/admin-ubah-pegawai` (Admin/HRD)
 - `POST /pegawai/admin-ubah-photo?idUser=...` (Admin/HRD)
-- `POST /pegawai/ubah-photo` (Pegawai/HRD, ubah foto sendiri)
+- `POST /pegawai/ubah-photo` (Pegawai, ubah foto sendiri)
 
 ### PRESENSI & ABSENSI
 
@@ -132,3 +154,12 @@ UI web berada di `backend/src/main/resources/static` dan otomatis disajikan oleh
 - Halaman ini menyimpan token di `localStorage` setelah login.
 - Input tanggal pada halaman presensi akan dikonversi ke epoch detik (timezone Asia/Jakarta).
 
+## Menyiapkan Deliverables (PDF + Source + Arsip)
+
+Pastikan backend sudah running (agar PDF bisa diunduh), lalu jalankan:
+
+```powershell
+.\scripts\prepare-deliverables.ps1 -BaseUrl http://localhost:8080
+```
+
+Output akan dibuat di folder `deliverables/`. Jika 7-Zip terinstall di `C:\Program Files\7-Zip\7z.exe`, skrip akan membuat `deliverables/absensi-deliverable.7z`.

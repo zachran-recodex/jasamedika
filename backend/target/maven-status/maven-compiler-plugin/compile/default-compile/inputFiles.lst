@@ -46,6 +46,7 @@ C:\Users\Admin\web\backend\src\main\java\com\task\absensi\presensi\PresensiContr
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\api\model\Role.java
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\common\AppConfig.java
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\api\repo\JenisKelaminRepository.java
+C:\Users\Admin\web\backend\src\main\java\com\task\absensi\docs\AppInfoPdfController.java
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\api\repo\UserRepository.java
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\api\model\Departemen.java
 C:\Users\Admin\web\backend\src\main\java\com\task\absensi\api\repo\UnitKerjaRepository.java
