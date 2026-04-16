@@ -1,5 +1,9 @@
 package com.task.absensi.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserProfileDto {
     private Long idUser;
     private String namaLengkap;
@@ -12,7 +16,9 @@ public class UserProfileDto {
     private String unitKerja;
     private String jenisKelamin;
     private String pendidikan;
-    private String photoBase64;
+    @JsonProperty("Photo")
+    @JsonAlias({"photo", "photoBase64", "Photo"})
+    private String photo;
 
     public Long getIdUser() {
         return idUser;
@@ -102,11 +108,21 @@ public class UserProfileDto {
         this.pendidikan = pendidikan;
     }
 
+    @JsonIgnore
     public String getPhotoBase64() {
-        return photoBase64;
+        return photo;
     }
 
+    @JsonIgnore
     public void setPhotoBase64(String photoBase64) {
-        this.photoBase64 = photoBase64;
+        this.photo = photoBase64;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

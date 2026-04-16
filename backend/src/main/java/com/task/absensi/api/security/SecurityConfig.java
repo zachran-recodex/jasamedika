@@ -23,7 +23,17 @@ public class SecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-                .antMatchers("/api/auth/init-data", "/api/auth/login", "/h2/**").permitAll()
+                .antMatchers(
+                        "/",
+                        "/index.html",
+                        "/app.js",
+                        "/styles.css",
+                        "/favicon.ico",
+                        "/error",
+                        "/api/auth/init-data",
+                        "/api/auth/login",
+                        "/h2/**"
+                ).permitAll()
                 .anyRequest().authenticated();
 
         http.headers().frameOptions().disable();

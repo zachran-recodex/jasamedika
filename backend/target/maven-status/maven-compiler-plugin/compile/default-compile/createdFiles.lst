@@ -25,6 +25,7 @@ com\task\absensi\api\model\UnitKerja.class
 com\task\absensi\api\model\User.class
 com\task\absensi\api\dto\PresensiDto.class
 com\task\absensi\api\security\SecurityConfig.class
+com\task\absensi\docs\AppInfoPdfController.class
 com\task\absensi\api\repo\UnitKerjaRepository.class
 com\task\absensi\api\model\Perusahaan.class
 com\task\absensi\api\repo\StatusAbsenRepository.class

@@ -1,0 +1,134 @@
+# Absensi Fullstack (Java Spring Boot)
+
+Project ini adalah implementasi spesifikasi API pada [task.md](file:///c:/Users/Admin/web/task.md) menggunakan Java Spring Boot, dengan UI web sederhana (tanpa framework) untuk kebutuhan Fullstack.
+
+## Struktur Folder
+
+- `backend/` : Spring Boot API + UI web statis (served dari Spring)
+- `task.md` : dokumen spesifikasi API
+
+## Prasyarat
+
+- Java 8 (JRE sudah cukup untuk build di repo ini, karena compile menggunakan Eclipse JDT compiler lewat Maven)
+
+## Menjalankan Aplikasi
+
+Dari folder `backend`:
+
+```bash
+.\mvnw.cmd spring-boot:run
+```
+
+Lalu buka:
+
+- UI Web: `http://localhost:8080/`
+- H2 Console: `http://localhost:8080/h2`
+- PDF info aplikasi: `http://localhost:8080/docs/app-info.pdf`
+
+## Menjalankan Test
+
+```bash
+.\mvnw.cmd test
+```
+
+## Aturan Penting (Sesuai Spesifikasi)
+
+- Format tanggal pada API menggunakan **Epoch detik** (bukan milidetik).
+- Error bisnis/API dikembalikan sebagai **HTTP 501** dengan pesan manusiawi.
+- Error lain seperti 400/404/500 adalah error akses/bug (pesan boleh teknis).
+
+## Alur Cepat (Minimal)
+
+1) Init data (buat perusahaan + admin)
+
+Endpoint:
+
+- `POST /api/auth/init-data`
+
+Body:
+
+```json
+{
+  "namaAdmin": "Admin Satu",
+  "perusahaan": "PT Contoh"
+}
+```
+
+Default akun admin yang dibuat:
+
+- `username`: `admin`
+- `password`: `admin123`
+
+2) Login untuk dapat token
+
+- `POST /api/auth/login`
+
+Body:
+
+```json
+{
+  "username": "admin",
+  "password": "admin123"
+}
+```
+
+Response:
+
+```json
+{
+  "token": "BearerToken...",
+  "info": {
+    "idUser": 1,
+    "namaLengkap": "Admin Satu",
+    "Photo": "base64..."
+  }
+}
+```
+
+3) Gunakan token pada request selanjutnya
+
+Header:
+
+`Authorization: Bearer <token>`
+
+## Endpoint (Ringkas)
+
+### AUTH
+
+- `POST /api/auth/init-data`
+- `POST /api/auth/login`
+- `POST /api/auth/ubah-password-sendiri`
+
+### PEGAWAI (Combo)
+
+- `GET /api/pegawai/combo/jabatan`
+- `GET /api/pegawai/combo/departemen`
+- `GET /api/pegawai/combo/unit-kerja`
+- `GET /api/pegawai/combo/pendidikan`
+- `GET /api/pegawai/combo/jenis-kelamin`
+- `GET /api/pegawai/combo/departemen-hrd`
+
+### Manajemen PEGAWAI
+
+- `GET /api/pegawai/daftar` (Admin/HRD)
+- `POST /pegawai/admin-tambah-pegawai` (Admin/HRD)
+- `POST /pegawai/admin-ubah-pegawai` (Admin/HRD)
+- `POST /pegawai/admin-ubah-photo?idUser=...` (Admin/HRD)
+- `POST /pegawai/ubah-photo` (Pegawai/HRD, ubah foto sendiri)
+
+### PRESENSI & ABSENSI
+
+- `GET /presensi/combo/status-absen?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
+- `GET /presensi/daftar/admin?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC` (Admin/HRD)
+- `GET /presensi/daftar/pegawai?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
+- `GET /presensi/in`
+- `GET /presensi/out`
+- `POST /presensi/abseni`
+
+## UI Web
+
+UI web berada di `backend/src/main/resources/static` dan otomatis disajikan oleh Spring Boot.
+
+- Halaman ini menyimpan token di `localStorage` setelah login.
+- Input tanggal pada halaman presensi akan dikonversi ke epoch detik (timezone Asia/Jakarta).
+
