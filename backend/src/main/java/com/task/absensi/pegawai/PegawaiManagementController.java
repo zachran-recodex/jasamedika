@@ -52,7 +52,7 @@ public class PegawaiManagementController {
     }
 
     @PostMapping("/pegawai/ubah-photo")
-    @PreAuthorize("hasAnyRole('PEGAWAI','HRD')")
+    @PreAuthorize("hasRole('PEGAWAI')")
     public UserProfileDto ubahPhoto(@AuthenticationPrincipal AppUserDetails userDetails, @Valid @RequestBody UbahPhotoRequest request) {
         return pegawaiService.ubahPhotoSendiri(userDetails.getUser(), request);
     }
