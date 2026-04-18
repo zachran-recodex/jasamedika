@@ -93,7 +93,7 @@ document.getElementById("btnTambahPegawai").addEventListener("click", async () =
   try {
     const username = document.getElementById("tambahUsername").value.trim();
     const namaLengkap = document.getElementById("tambahNama").value.trim();
-    const out = await api("/pegawai/admin-tambah-pegawai", { method: "POST", body: { username, namaLengkap } });
+    const out = await api("/api/pegawai/admin-tambah-pegawai", { method: "POST", body: { username, namaLengkap } });
     setOutput(out);
   } catch (e) {
     setOutput(e);
@@ -102,7 +102,7 @@ document.getElementById("btnTambahPegawai").addEventListener("click", async () =
 
 document.getElementById("btnPresensiIn").addEventListener("click", async () => {
   try {
-    const out = await api("/presensi/in");
+    const out = await api("/api/presensi/in");
     setOutput(out);
   } catch (e) {
     setOutput(e);
@@ -111,7 +111,7 @@ document.getElementById("btnPresensiIn").addEventListener("click", async () => {
 
 document.getElementById("btnPresensiOut").addEventListener("click", async () => {
   try {
-    const out = await api("/presensi/out");
+    const out = await api("/api/presensi/out");
     setOutput(out);
   } catch (e) {
     setOutput(e);
@@ -123,7 +123,7 @@ document.getElementById("btnDaftarPresensiSaya").addEventListener("click", async
     const tglAwal = toEpochSecondsJakarta(document.getElementById("tglAwal").value);
     const tglAkhir = toEpochSecondsJakarta(document.getElementById("tglAkhir").value);
     const params = new URLSearchParams({ tglAwal: String(tglAwal), tglAkhir: String(tglAkhir) });
-    const out = await api(`/presensi/daftar/pegawai?${params.toString()}`);
+    const out = await api(`/api/presensi/daftar/pegawai?${params.toString()}`);
     setOutput(out);
   } catch (e) {
     setOutput(e);
@@ -135,7 +135,7 @@ document.getElementById("btnDaftarPresensiAdmin").addEventListener("click", asyn
     const tglAwal = toEpochSecondsJakarta(document.getElementById("tglAwal").value);
     const tglAkhir = toEpochSecondsJakarta(document.getElementById("tglAkhir").value);
     const params = new URLSearchParams({ tglAwal: String(tglAwal), tglAkhir: String(tglAkhir) });
-    const out = await api(`/presensi/daftar/admin?${params.toString()}`);
+    const out = await api(`/api/presensi/daftar/admin?${params.toString()}`);
     setOutput(out);
   } catch (e) {
     setOutput(e);
