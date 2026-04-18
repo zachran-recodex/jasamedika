@@ -4,7 +4,8 @@ Project ini adalah implementasi spesifikasi API untuk tugas Jasamedika menggunak
 
 ## Struktur Folder
 
-- `backend/` : Spring Boot API + UI web statis (served dari Spring)
+- `backend/` : Spring Boot API
+- `frontend/` : UI web statis yang dibangun sebagai asset dan disajikan oleh Spring Boot
 - `desktop-app/` : aplikasi desktop Windows (Java Swing) untuk akses API (pengganti APK mobile)
 - `scripts/` : skrip bantu untuk menyiapkan deliverables (PDF + source + archive)
 
@@ -151,7 +152,7 @@ Header:
 
 ## UI Web
 
-UI web berada di `backend/src/main/resources/static` dan otomatis disajikan oleh Spring Boot.
+UI web berada di folder `frontend/` dan otomatis dimasukkan ke package Spring Boot saat build.
 
 - Halaman ini menyimpan token di `localStorage` setelah login.
 - Input tanggal pada halaman presensi akan dikonversi ke epoch detik (timezone Asia/Jakarta).
