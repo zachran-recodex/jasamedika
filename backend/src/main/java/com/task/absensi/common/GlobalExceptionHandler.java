@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -41,6 +42,20 @@ public class GlobalExceptionHandler {
         body.put("message", "Validasi input gagal: " + errors);
         body.put("errors", ex.getBindingResult().getFieldErrors());
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Handle resource not found - HTTP 404 Not Found
+     * Messages should be clear about what resource was not found
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNoHandlerFound(
+            NoHandlerFoundException ex, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("message", "Endpoint tidak ditemukan: " + ex.getRequestURL());
+        body.put("method", ex.getHttpMethod());
+        body.put("path", ex.getRequestURL());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
     /**
