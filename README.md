@@ -57,6 +57,8 @@ java -jar .\target\absensi-desktop.jar
 - Format tanggal pada API menggunakan **Epoch detik** (bukan milidetik).
 - Error bisnis/API dikembalikan sebagai **HTTP 501** dengan pesan manusiawi.
 - Error lain seperti 400/404/500 adalah error akses/bug (pesan boleh teknis).
+- **CORS enabled**: API dapat diakses dari origin manapun (frontend dari berbagai URL).
+- **404 handling**: Endpoint yang tidak ditemukan akan mengembalikan HTTP 404 dengan deskripsi jelas.
 
 ## Alur Cepat (Minimal)
 
@@ -132,19 +134,19 @@ Header:
 ### Manajemen PEGAWAI
 
 - `GET /api/pegawai/daftar` (Admin/HRD)
-- `POST /pegawai/admin-tambah-pegawai` (Admin/HRD)
-- `POST /pegawai/admin-ubah-pegawai` (Admin/HRD)
-- `POST /pegawai/admin-ubah-photo?idUser=...` (Admin/HRD)
-- `POST /pegawai/ubah-photo` (Pegawai, ubah foto sendiri)
+- `POST /api/pegawai/admin-tambah-pegawai` (Admin/HRD)
+- `POST /api/pegawai/admin-ubah-pegawai` (Admin/HRD)
+- `POST /api/pegawai/admin-ubah-photo?idUser=...` (Admin/HRD)
+- `POST /api/pegawai/ubah-photo` (Pegawai, ubah foto sendiri)
 
 ### PRESENSI & ABSENSI
 
-- `GET /presensi/combo/status-absen?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
-- `GET /presensi/daftar/admin?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC` (Admin/HRD)
-- `GET /presensi/daftar/pegawai?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
-- `GET /presensi/in`
-- `GET /presensi/out`
-- `POST /presensi/abseni`
+- `GET /api/presensi/combo/status-absen?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
+- `GET /api/presensi/daftar/admin?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC` (Admin/HRD)
+- `GET /api/presensi/daftar/pegawai?tglAwal=EPOCH_SEC&tglAkhir=EPOCH_SEC`
+- `GET /api/presensi/in`
+- `GET /api/presensi/out`
+- `POST /api/presensi/abseni`
 
 ## UI Web
 
