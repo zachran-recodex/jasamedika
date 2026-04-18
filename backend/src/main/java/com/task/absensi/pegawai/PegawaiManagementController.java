@@ -33,25 +33,25 @@ public class PegawaiManagementController {
         return pegawaiService.daftarPegawai();
     }
 
-    @PostMapping("/pegawai/admin-tambah-pegawai")
+    @PostMapping("/api/pegawai/admin-tambah-pegawai")
     @PreAuthorize("hasAnyRole('ADMIN','HRD')")
     public TambahPegawaiResponse adminTambahPegawai(@Valid @RequestBody AdminTambahPegawaiRequest request) {
         return pegawaiService.adminTambahPegawai(request);
     }
 
-    @PostMapping("/pegawai/admin-ubah-pegawai")
+    @PostMapping("/api/pegawai/admin-ubah-pegawai")
     @PreAuthorize("hasAnyRole('ADMIN','HRD')")
     public UserProfileDto adminUbahPegawai(@Valid @RequestBody AdminUbahPegawaiRequest request) {
         return pegawaiService.adminUbahPegawai(request);
     }
 
-    @PostMapping("/pegawai/admin-ubah-photo")
+    @PostMapping("/api/pegawai/admin-ubah-photo")
     @PreAuthorize("hasAnyRole('ADMIN','HRD')")
     public UserProfileDto adminUbahPhoto(@RequestParam("idUser") Long idUser, @Valid @RequestBody UbahPhotoRequest request) {
         return pegawaiService.adminUbahPhoto(idUser, request);
     }
 
-    @PostMapping("/pegawai/ubah-photo")
+    @PostMapping("/api/pegawai/ubah-photo")
     @PreAuthorize("hasRole('PEGAWAI')")
     public UserProfileDto ubahPhoto(@AuthenticationPrincipal AppUserDetails userDetails, @Valid @RequestBody UbahPhotoRequest request) {
         return pegawaiService.ubahPhotoSendiri(userDetails.getUser(), request);

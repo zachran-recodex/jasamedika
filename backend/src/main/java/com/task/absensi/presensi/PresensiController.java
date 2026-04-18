@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/presensi")
+@RequestMapping("/api/presensi")
 @Validated
 public class PresensiController {
     private final PresensiService presensiService;
