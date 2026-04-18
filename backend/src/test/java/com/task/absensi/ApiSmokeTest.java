@@ -51,7 +51,7 @@ public class ApiSmokeTest {
                 .andExpect(status().isOk());
 
         String tambahPegawaiBody = "{\"username\":\"user1\",\"namaLengkap\":\"Pegawai 1\"}";
-        MvcResult tambahPegawaiResult = mockMvc.perform(post("/pegawai/admin-tambah-pegawai")
+        MvcResult tambahPegawaiResult = mockMvc.perform(post("/api/pegawai/admin-tambah-pegawai")
                         .header("Authorization", "Bearer " + adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(tambahPegawaiBody))
@@ -72,7 +72,7 @@ public class ApiSmokeTest {
         String userToken = userLoginJson.get("token").asText();
         assertThat(userToken).isNotBlank();
 
-        MvcResult presensiInResult = mockMvc.perform(get("/presensi/in")
+        MvcResult presensiInResult = mockMvc.perform(get("/api/presensi/in")
                         .header("Authorization", "Bearer " + userToken))
                 .andExpect(status().isOk())
                 .andReturn();
