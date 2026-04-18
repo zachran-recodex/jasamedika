@@ -1,13 +1,12 @@
 # Absensi Fullstack (Java Spring Boot)
 
-Project ini adalah implementasi spesifikasi API pada [task.md](file:///c:/Users/Admin/web/task.md) menggunakan Java Spring Boot, dengan UI web sederhana (tanpa framework) untuk kebutuhan Fullstack.
+Project ini adalah implementasi spesifikasi API untuk tugas Jasamedika menggunakan Java Spring Boot, dengan UI web sederhana (tanpa framework) untuk kebutuhan Fullstack.
 
 ## Struktur Folder
 
 - `backend/` : Spring Boot API + UI web statis (served dari Spring)
 - `desktop-app/` : aplikasi desktop Windows (Java Swing) untuk akses API (pengganti APK mobile)
 - `scripts/` : skrip bantu untuk menyiapkan deliverables (PDF + source + archive)
-- `task.md` : dokumen spesifikasi API
 
 ## Prasyarat
 
