@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 
     /**
      * Handle API business logic exceptions - HTTP 501
-     * Messages should be human-readable
+     * Pesan ditampilkan dalam bahasa yang mudah dimengerti
      */
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<Map<String, Object>> handleApiException(ApiException ex, WebRequest request) {

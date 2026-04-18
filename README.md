@@ -55,10 +55,11 @@ java -jar .\target\absensi-desktop.jar
 ## Aturan Penting (Sesuai Spesifikasi)
 
 - Format tanggal pada API menggunakan **Epoch detik** (bukan milidetik).
-- Error bisnis/API dikembalikan sebagai **HTTP 501** dengan pesan manusiawi.
-- Error lain seperti 400/404/500 adalah error akses/bug (pesan boleh teknis).
-- **CORS enabled**: API dapat diakses dari origin manapun (frontend dari berbagai URL).
-- **404 handling**: Endpoint yang tidak ditemukan akan mengembalikan HTTP 404 dengan deskripsi jelas.
+- Error bisnis/API dikembalikan sebagai **HTTP 501** dengan pesan yang mudah dimengerti.
+- Error lain seperti 400/404/500 adalah error akses atau bug.
+- API dirancang agar bisa dipanggil dari aplikasi web atau client lain.
+- Request ke endpoint yang tidak ada akan kembali dengan HTTP 404.
+
 
 ## Alur Cepat (Minimal)
 

@@ -58,10 +58,10 @@ public class AppInfoPdfController {
                 writeLine(cs, "- POST /api/auth/init-data");
                 writeLine(cs, "- POST /api/auth/login");
                 writeLine(cs, "- GET /api/pegawai/daftar (Admin/HRD)");
-                writeLine(cs, "- GET /presensi/in, /presensi/out");
+                writeLine(cs, "- GET /api/presensi/in, /api/presensi/out");
                 writeLine(cs, "");
                 ZoneId zoneId = ZoneId.of("Asia/Jakarta");
-                writeLine(cs, "Generated: " + ZonedDateTime.now(zoneId).toString());
+                writeLine(cs, "Dibuat pada: " + ZonedDateTime.now(zoneId).toString());
                 cs.endText();
             } finally {
                 cs.close();
